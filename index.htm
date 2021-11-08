@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Lucky Draw</title>
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <!-- falling confetti --->
+    <canvas id="confetti"></canvas>
+
+    <div id="divMain" class="container">
+        <div id="divLuckyDraw" class="row px-3 py-4">
+            <div class="col-md-12">
+                <div class="row no-gutters">
+                    <h1 class="neon-text mx-auto">Vòng Quay <br/> May Mắn</h1>
+                    <img src="images/sgc-logo.png" class="logo">
+                    <h3 id="h3Title" class="h-title">MINIGAME <br/> Người bạn may mắn bật mí mỗi tuần</h3>
+                    <p id="pDes" class="p-des mt-5 mb-2">
+                        Chúng tôi rất cảm ơn Bạn đã luôn tin tưởng, thấu hiểu sự khó khăn và chọn đồng hành cùng Saigon Co.op trong thời gian qua.
+                        Để tri ân đến Bạn - Quý khách hàng thân yêu đã cùng trải qua giai đoạn “thanh xuân” tươi đẹp của chúng tôi, mã thẻ của bạn được tham gia minigame có cơ hội trúng phiếu mua hàng 500.000đ của Saigon Co.op.
+                    </p>
+                    <button id="btnPlay" class="btn btn-lucky-raw ripple-surface d-none">Quay Số</button>
+                </div>
+                <div id="divStartContainer" class="row no-gutters px-xl-5">
+                    <div class="col-md-12">
+                        <div class="row px-xl-5 pb-2">
+                            <div class="col-md-7">
+                                <p class="text-white mb-0">- &nbsp;&nbsp;THỜI GIAN CÔNG BỐ KẾT QUẢ:</p>
+                                <ul class="ul-arrow mb-0">
+                                    <li>12/11, 19/11 và 26/11/2021</li>
+                                </ul>
+                                <p class="text-white mb-0">- &nbsp;&nbsp;CƠ CẤU GIẢI THƯỞNG:</p>
+                                <ul class="ul-arrow mb-0">
+                                    <li>01 Phiếu mua hàng Saigon Co.op trị giá 500.000đ/ giải. 100 giải/ ngày.</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-5">
+                                <p class="text-white mb-0">- &nbsp;&nbsp;ĐỐI TƯỢNG THAM GIA:</p>
+                                <ul class="ul-dot mb-0">
+                                    <li>khách hàng có thẻ Đồng/ Bạc/ Vàng/ Bạch Kim</li>
+                                </ul>
+                                <p class="text-white mb-0">- &nbsp;&nbsp;SỐ LƯỢT QUAY THƯỞNG:</p>
+                                <ul class="ul-dot mb-0">
+                                    <li>Mỗi ngày: 10 lượt quay, mỗi lượt 10 giải thưởng.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row px-5 justify-content-center">
+                            <div class="col-md-9">
+                            <ul class="mb-0">
+                                <li>- &nbsp;&nbsp;Giải thưởng của chương trình đều không có giá trị quy đổi thành tiền mặt.</li>
+                                <li>- &nbsp;&nbsp;Mỗi mã thẻ chỉ nhận duy nhất 01 giải.</li>
+                                <li>- &nbsp;&nbsp;Thời gian nhận giải: 60 ngày kể từ ngày kết thúc chương trình.</li>
+                                <li>- &nbsp;&nbsp;Sau thời gian này khách hàng không đến nhận thưởng, phần thưởng sẽ được xử lý theo quy định của pháp luật hiện hành và mọi khiếu nại về chương trình sẽ không được giải quyết.</li>
+                                <li>- &nbsp;&nbsp;<span class="font-weight-bold font-italic">Mọi thắc mắc quý khách hàng vui lòng liên hệ Tổng đài CSKH: 1900.5555.68</span></li>
+                            </ul>
+                            </div>
+                        </div>
+                        <div class="row p-3">
+                            <button id="btnStart" class="btn btn-lucky-raw ripple-surface mx-auto font-weight-bold">Bắt Đầu</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="divDrawContainer" class="row no-gutters h-100 align-items-center d-none">
+                    <span id="sgcSlogan" class="slogan third-prize"></span>
+                    <article class="w-50 mx-auto" id="ThirdPrize1">
+                        <input type="hidden" id="hidOrder3" value="0">
+                        <input type="hidden" id="hidContinue3" value="1">
+                        <input type="hidden" id="hidThirdPrizeData1" value="0">
+                        <div class="machine">
+                            <div class="wrap"></div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="divConfetti" class="container-fluid d-none"></div>
+
+    <!-- congratulating popup --->
+    <div class="modal fade2 d-flex align-items-center justify-content-center" id="divConfettiModal" tabindex="-1" role="dialog" aria-labelledby="divConfettiModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button id="btnClose" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="imgConfetti" class="img-fluid" src="images/third-10-confetti-popup.png">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- exporting popup --->
+    <div class="modal fade2 d-flex justify-content-center" id="divExportModal" tabindex="-1" role="dialog" aria-labelledby="divExportModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <h3 class="h-title">Tải danh sách trúng thưởng</h3>
+                    <div class="py-2"></div>
+                    <button id="btnPrize3" class="btn btn-lucky-raw ripple-surface">100 Mã Thẻ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--- music --->
+    <audio autoplay loop id="audLuckyDraw"><source src="music/sgc-music.mp3" type="audio/mp3"></audio>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.csv.min.js"></script>
+    <script src="js/slotmachine.min.js"></script>
+    <script src="js/jquery.slotmachine.min.js"></script>
+    <script src="js/random.js"></script>
+    <script src="js/sgc.main.js"></script>
+</body>
+</html>
