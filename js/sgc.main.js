@@ -353,7 +353,7 @@ function setMachineData(order, numbers) {
     $("#ThirdPrize1 > .machine > .wrap").html("");
     $("#btnPlay").text("Quay số").prop("disabled", false);
     var customer_list;
-    $.get(base_url + "data/customer_code.csv", function (csv) {
+    $.get(base_url + "data/ds_ngay12.csv", function (csv) {
         customer_list = $.csv.toArrays(csv, {
             onParseValue: $.csv.hooks.castToScalar
         });
