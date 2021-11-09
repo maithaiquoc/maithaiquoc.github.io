@@ -522,6 +522,7 @@ h1.neon-text {
 }
 #ThirdPrize1 .machine .option{
     /*font-size: 0.8em;*/
+    letter-spacing: 5px;
 }
 .machine .option span {
     display: inline-block;
